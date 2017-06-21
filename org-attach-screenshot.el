@@ -55,7 +55,7 @@
 buffer. Screenshot files are saved in locations that are defined
 by the org attachment system" :group 'org :version 24.3)
 
-(defcustom org-attach-screenshot-command-line "import %f"
+(defcustom org-attach-screenshot-command-line "screencapture -s %f"
   "Contains the command line used to take a screenshot.
 You need to indicate the place where the filename should be
 substituted by %f" :group 'org-attach-screenshot)
@@ -119,7 +119,7 @@ the links being already placed inside the text."
 		 (not (y-or-n-p (format "%s already exists. Overwrite?"
 					scrfilename))))
 	    (call-interactively 'org-attach-screenshot)
-	  (insert (concat "[[file:" linkfilename "]]"))
+	  (insert (concat "#+attr_html: :width 300px\n[[file:" linkfilename "][file:" linkfilename "]]"))
 	  (unless prfx (make-frame-invisible nil t))
 	  ;; we must canoncicalize the file name when we hand it
 	  ;; by call-process to the import command
